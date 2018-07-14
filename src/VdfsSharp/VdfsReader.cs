@@ -50,7 +50,7 @@ namespace VdfsSharp
 
                 if ((entry.Type.HasFlag(Vdfs.EntryType.Directory) == false) && (readContent))
                 {
-                    entry.Content = readEntryContent(entry);
+                    entry.Content = ReadEntryContent(entry);
                 }             
 
                 yield return entry;
@@ -77,7 +77,7 @@ namespace VdfsSharp
         /// <summary>
         /// Reads entry content from archive.
         /// </summary>
-        private byte[] readEntryContent (VdfsEntry entry)
+        public byte[] ReadEntryContent (VdfsEntry entry)
         {
             long positonBackup = _reader.BaseStream.Position;
 
