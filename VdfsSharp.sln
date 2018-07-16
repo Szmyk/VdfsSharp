@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VdfsSharp", "src\VdfsSharp\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VdfsSharp.Tests", "tests\VdfsSharp.Tests\VdfsSharp.Tests.csproj", "{B412AAC8-573F-40F7-A8BE-422B310F3435}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VdfsSharp.Sample", "samples\VdfsSharp.Sample\VdfsSharp.Sample.csproj", "{B6C32EEE-3156-4C3B-9E42-E2DF1025306D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{B412AAC8-573F-40F7-A8BE-422B310F3435}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B412AAC8-573F-40F7-A8BE-422B310F3435}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B412AAC8-573F-40F7-A8BE-422B310F3435}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B6C32EEE-3156-4C3B-9E42-E2DF1025306D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B6C32EEE-3156-4C3B-9E42-E2DF1025306D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B6C32EEE-3156-4C3B-9E42-E2DF1025306D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B6C32EEE-3156-4C3B-9E42-E2DF1025306D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
