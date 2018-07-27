@@ -68,7 +68,10 @@ namespace VdfsSharp.Sample
 
                     var extractor = new VdfsExtractor(reader);
 
-                    extractor.ExtractFiles(Options.ExtractPath, Options.WithHierarchy);
+                    extractor.ExtractFiles(Options.ExtractPath,
+                        (Options.WithHierarchy == true)
+                        ? ExtractOption.Hierarchy 
+                        : ExtractOption.NoHierarchy );
 
                     Console.WriteLine("Done.");
                 }           

@@ -35,6 +35,6 @@ using VdfsSharp;
 
 var extractor = new VdfsExtractor("Anims.vdf");
 
-extractor.ExtractFiles("_Work\Anims", true);
+extractor.ExtractFiles("_Work\Anims", ExtractOption.Hierarchy);
 
 ````

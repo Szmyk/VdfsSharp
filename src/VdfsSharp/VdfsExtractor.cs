@@ -5,6 +5,22 @@ using System.Collections.Generic;
 namespace VdfsSharp
 {
     /// <summary>
+    /// Specifies how to extract files.
+    /// </summary>
+    public enum ExtractOption
+    {
+        /// <summary>
+        /// Extract files with directories structure.
+        /// </summary>
+        Hierarchy,
+
+        /// <summary>
+        /// Extract files without directories structure.
+        /// </summary>
+        NoHierarchy
+    }
+
+    /// <summary>
     /// Provides extracting files from VDFS archive.
     /// </summary>
     public class VdfsExtractor
@@ -45,12 +61,12 @@ namespace VdfsSharp
         /// Extracts all entries to directory.
         /// </summary>
         /// <param name="outputDirectory">Directory to extract files.</param>
-        /// <param name="withHierarchy">Specifies whether to extract with directories hierarchy. </param>
-        public void ExtractFiles(string outputDirectory, bool withHierarchy)
+        /// <param name="options">Specifies extracting options. </param>
+        public void ExtractFiles(string outputDirectory, ExtractOption options)
         {
             var entries = _vdfsReader.ReadEntries(true).ToArray();
 
-            if (withHierarchy)
+            if (options == ExtractOption.Hierarchy)
             {
                 var tree = new VdfsEntriesTreeGenerator(entries).Generate();
 
