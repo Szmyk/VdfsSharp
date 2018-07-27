@@ -32,6 +32,11 @@ namespace VdfsSharp
                 {                 
                     generateDirectoryTree(_entries[i], _entries, node);
                 }
+
+                if (_entries[i].Type.HasFlag(Vdfs.EntryType.Last))
+                {
+                    break;
+                }
             }
 
             return tree;
@@ -39,7 +44,7 @@ namespace VdfsSharp
 
         private void generateDirectoryTree(VdfsEntry directory, VdfsEntry[] entries, VdfsEntriesTree node)
         {
-            for (uint i = directory.Offset; entries[i].Type.HasFlag(Vdfs.EntryType.Last) == false; i++)
+            for (uint i = directory.Offset; ; i++)
             {
                 var child = node.AddChild(entries[i]);
 
