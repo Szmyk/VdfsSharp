@@ -91,11 +91,11 @@ namespace VdfsSharp
         }    
 
         /// <summary>
-        /// Converts bytes array to 7-bit ASCII string.
+        /// Converts bytes array to 8-bit ASCII string.
         /// </summary>
         private string decodeBytesToString (byte[] bytes)
         {
-            return Encoding.ASCII.GetString(bytes);
+            return Encoding.GetEncoding("iso-8859-1").GetString(bytes);
         }
 
         /// <summary>

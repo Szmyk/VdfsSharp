@@ -97,6 +97,21 @@ namespace VdfsSharp.Tests
 
             Assert.AreEqual(generateVdfsEntriesTreeView(entries), generateVdfsEntriesTreeView("Samples/test3.vdf"));
         }
+
+        [TestMethod]
+        public void Generate_Test4()
+        {
+            /*
+            +- HEIßE.TXT (0 bytes)          
+            +- Ó.TXT (0 bytes)     
+            */
+
+            var entries = new VdfsEntryListBuilder()
+                /*0*/.Add("HEIßE.TXT")
+                /*0*/.AddLast("Ó.TXT").Entries.ToArray();
+
+            Assert.AreEqual(generateVdfsEntriesTreeView(entries), generateVdfsEntriesTreeView("Samples/test4.vdf"));
+        }
     }
 
     class VdfsEntryListBuilder
