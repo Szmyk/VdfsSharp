@@ -74,7 +74,7 @@ namespace VdfsSharp.Sample
                 }           
                 else if (Options.PrintTree || Options.SaveTree != string.Empty)
                 {
-                    var entries = reader.ReadEntries(false).ToList();
+                    var entries = reader.ReadEntries(false).ToArray();
 
                     var treeGenerator = new VdfsEntriesTreeGenerator(entries);
 

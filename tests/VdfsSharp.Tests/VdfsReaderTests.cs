@@ -38,8 +38,8 @@ namespace VdfsSharp.Tests
 
             CollectionAssert.AreEqual(expectedEntries, entries);
         }
-
-        private static List<VdfsEntry> expectedEntries = new List<VdfsEntry>()
+    
+        private static VdfsEntry[] expectedEntries = new VdfsEntry[]
         {
             new VdfsEntry()
             {

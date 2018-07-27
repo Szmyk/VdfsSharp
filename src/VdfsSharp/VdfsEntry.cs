@@ -12,32 +12,32 @@ namespace VdfsSharp
         /// <summary>
         /// Gets or sets the name of entry.
         /// </summary>
-        public string Name { get; set; }
+        public string Name;
 
         /// <summary>
         /// Gets or sets the index of first entry if entry is directory or offset of the first byte of content if entry is file.
         /// </summary>
-        public uint Offset { get; set; }
+        public uint Offset;
 
         /// <summary>
         /// Gets or sets the size in bytes of the entry content.
         /// </summary>
-        public uint Size { get; set; }
+        public uint Size;
 
         /// <summary>
         /// Gets or sets the type of entry.
         /// </summary>
-        public Vdfs.EntryType Type { get; set; }
+        public Vdfs.EntryType Type;
 
         /// <summary>
         /// Gets or sets the attributes of entry.
         /// </summary>
-        public Vdfs.FileAttribute Attributes { get; set; }
+        public Vdfs.FileAttribute Attributes;
 
         /// <summary>
         /// Gets or sets the content of entry.
         /// </summary>
-        public byte[] Content { get; set; }
+        public byte[] Content;
 
         /// <summary>
         /// Saves content of entry to file.

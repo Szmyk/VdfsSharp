@@ -7,12 +7,12 @@ namespace VdfsSharp
     /// </summary>
     public class VdfsEntriesTreeGenerator
     {
-        List<VdfsEntry> _entries;
+        VdfsEntry[] _entries;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="VdfsEntriesTreeGenerator"/> class.
         /// </summary>
-        public VdfsEntriesTreeGenerator(List<VdfsEntry> entries)
+        public VdfsEntriesTreeGenerator(VdfsEntry[] entries)
         {
             _entries = entries;
         }
@@ -24,7 +24,7 @@ namespace VdfsSharp
         {
             VdfsEntriesTree tree = new VdfsEntriesTree();
 
-            for (int i = 0; i < _entries.Count; i++)
+            for (int i = 0; i < _entries.Length; i++)
             {
                 var node = tree.AddChild(_entries[i]);
 
@@ -32,19 +32,14 @@ namespace VdfsSharp
                 {                 
                     generateDirectoryTree(_entries[i], _entries, node);
                 }
-
-                if (_entries[i].Type.HasFlag(Vdfs.EntryType.Last))
-                {
-                    break;
-                }
             }
 
             return tree;
         }
 
-        private void generateDirectoryTree(VdfsEntry directory, List<VdfsEntry> entries, VdfsEntriesTree node)
+        private void generateDirectoryTree(VdfsEntry directory, VdfsEntry[] entries, VdfsEntriesTree node)
         {
-            for (int i = (int)directory.Offset; ; i++)
+            for (uint i = directory.Offset; entries[i].Type.HasFlag(Vdfs.EntryType.Last) == false; i++)
             {
                 var child = node.AddChild(entries[i]);
 

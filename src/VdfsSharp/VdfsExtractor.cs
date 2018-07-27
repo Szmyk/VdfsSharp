@@ -48,7 +48,7 @@ namespace VdfsSharp
         /// <param name="withHierarchy">Specifies whether to extract with directories hierarchy. </param>
         public void ExtractFiles(string outputDirectory, bool withHierarchy)
         {
-            var entries = _vdfsReader.ReadEntries(true).ToList();
+            var entries = _vdfsReader.ReadEntries(true).ToArray();
 
             if (withHierarchy)
             {
@@ -62,7 +62,7 @@ namespace VdfsSharp
             }                 
         }
 
-        private void saveFiles(List<VdfsEntry> entries, string outputDirectory)
+        private void saveFiles(VdfsEntry[] entries, string outputDirectory)
         {
             Directory.CreateDirectory(outputDirectory);
 
@@ -78,17 +78,17 @@ namespace VdfsSharp
         {
             Directory.CreateDirectory(outputDirectory);
 
-            foreach (var node in tree.Childrens)
+            for (int i = 0; i < tree.Childrens.Count; i++)
             {
-                var output = Path.Combine(outputDirectory, node.Entry.Name);
+                var output = Path.Combine(outputDirectory, tree.Childrens[i].Entry.Name);
 
-                if (node.Entry.Type.HasFlag(Vdfs.EntryType.Directory))
+                if (tree.Childrens[i].Entry.Type.HasFlag(Vdfs.EntryType.Directory))
                 {
-                    saveFiles(node, output);
+                    saveFiles(tree.Childrens[i], output);
                 }
                 else
                 {
-                    node.Entry.SaveToFile(output);
+                    tree.Childrens[i].Entry.SaveToFile(output);
                 }
             }
         }

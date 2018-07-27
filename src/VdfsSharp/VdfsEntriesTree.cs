@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text;
 
 namespace VdfsSharp
 {
@@ -50,21 +51,24 @@ namespace VdfsSharp
         /// </summary>
         public string GetTreeView(string indent = "", bool isLast = true, bool isRoot = true)
         {
-            string toReturn = string.Empty;
+            var result = new StringBuilder();
 
             if (isRoot == false)
             {
-                toReturn = indent + "+- " + Entry + Environment.NewLine;
+                result.Append(indent);
+                result.Append("+- ");
+                result.Append(Entry);
+                result.Append(Environment.NewLine);
 
                 indent += isLast ? "   " : "|  ";
             }
 
             for (int i = 0; i < Childrens.Count; i++)
             {
-                toReturn += Childrens[i].GetTreeView(indent, i == Childrens.Count - 1, false);
+                result.Append(Childrens[i].GetTreeView(indent, i == Childrens.Count - 1, false));
             }
 
-            return toReturn;
+            return result.ToString();
         }
     }
 }

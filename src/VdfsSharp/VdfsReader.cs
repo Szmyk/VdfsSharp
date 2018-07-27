@@ -13,7 +13,7 @@ namespace VdfsSharp
         /// <summary>
         /// Gets or sets the header of archive.
         /// </summary>
-        public VdfsHeader Header { get; set; }
+        public VdfsHeader Header;
 
         BinaryReader _reader;
 
@@ -37,7 +37,7 @@ namespace VdfsSharp
         {
             _reader.BaseStream.Seek(Header.RootOffset, SeekOrigin.Begin);
 
-            for (ulong i = 0; i < Header.EntryCount; i++)
+            for (uint i = 0; i < Header.EntryCount; i++)
             {
                 var entry = new VdfsEntry()
                 {

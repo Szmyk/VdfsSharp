@@ -9,7 +9,7 @@ namespace VdfsSharp.Tests
     [DeploymentItem("Samples/test.vdf")]
     public class VdfsEntriesTreeGeneratorTests
     {
-        string generateVdfsEntriesTreeView(List<VdfsEntry> entries)
+        string generateVdfsEntriesTreeView(VdfsEntry[] entries)
         {
             var treeGenerator = new VdfsEntriesTreeGenerator(entries);
 
@@ -22,7 +22,7 @@ namespace VdfsSharp.Tests
         {
             var vdf = new VdfsReader(vdfFile);
 
-            var entries = vdf.ReadEntries(false).ToList();
+            var entries = vdf.ReadEntries(false).ToArray();
 
             return generateVdfsEntriesTreeView(entries);
         }
@@ -45,7 +45,7 @@ namespace VdfsSharp.Tests
                 /*2*/.AddDirectory("SCRIPTS", 4)
                 /*3*/.AddLastDirectory("TEXTURES", 5)
                 /*4*/.AddLast("SCRIPT.D")
-                /*5*/.AddLast("TEXTURE.TEX").Entries;
+                /*5*/.AddLast("TEXTURE.TEX").Entries.ToArray();
 
             Assert.AreEqual(generateVdfsEntriesTreeView(entries), generateVdfsEntriesTreeView("Samples/test.vdf"));
         }
@@ -76,7 +76,7 @@ namespace VdfsSharp.Tests
                 /*6*/.AddDirectory("_WORK2_1", 8)
                 /*7*/.AddLastDirectory("_WORK2_2", 9)
                 /*8*/.AddLast("TEST2_1.TXT")
-                /*9*/.AddLast("TEST2_2.TXT").Entries;
+                /*9*/.AddLast("TEST2_2.TXT").Entries.ToArray();
 
             Assert.AreEqual(generateVdfsEntriesTreeView(entries), generateVdfsEntriesTreeView("Samples/test2.vdf"));
         }
@@ -93,7 +93,7 @@ namespace VdfsSharp.Tests
             var entries = new VdfsEntryListBuilder()
                 /*0*/.AddDirectory("DIR", 2)
                 /*1*/.AddLast("FILE1.TXT")
-                /*2*/.AddLast("FILE2.TXT").Entries;
+                /*2*/.AddLast("FILE2.TXT").Entries.ToArray();
 
             Assert.AreEqual(generateVdfsEntriesTreeView(entries), generateVdfsEntriesTreeView("Samples/test3.vdf"));
         }
