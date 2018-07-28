@@ -13,7 +13,7 @@ namespace VdfsSharp
         public string Comment;
 
         /// <summary>
-        /// Gets or set the signature of archibe.
+        /// Gets or set the signature of archive.
         /// </summary>
         public string Signature;
 

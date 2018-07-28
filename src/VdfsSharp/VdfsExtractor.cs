@@ -45,6 +45,9 @@ namespace VdfsSharp
             _vdfsReader = vdfsReader;
         }
 
+        /// <summary>
+        /// Releases all resources used by the current instance of the <see cref="VdfsExtractor"/> class.
+        /// </summary>
         public void Dispose()
         {
             _vdfsReader.Dispose();

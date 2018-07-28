@@ -40,7 +40,7 @@ namespace VdfsSharp.Tests
     
         private static VdfsEntry[] expectedEntries = new VdfsEntry[]
         {
-            new VdfsEntry()
+            new VdfsEntry
             {
                 Name = "_WORK",
                 Offset = 1,
@@ -49,7 +49,7 @@ namespace VdfsSharp.Tests
                 Attributes = 0,
                 Content = null,
             },
-            new VdfsEntry()
+            new VdfsEntry
             {
                 Name = "DATA",
                 Offset = 2,
@@ -58,7 +58,7 @@ namespace VdfsSharp.Tests
                 Attributes = 0,
                 Content = null,
             },
-            new VdfsEntry()
+            new VdfsEntry
             {
                 Name = "SCRIPTS",
                 Offset = 4,
@@ -67,7 +67,7 @@ namespace VdfsSharp.Tests
                 Attributes = 0,
                 Content = null,
             },
-            new VdfsEntry()
+            new VdfsEntry
             {
                 Name = "TEXTURES",
                 Offset = 5,
@@ -76,7 +76,7 @@ namespace VdfsSharp.Tests
                 Attributes = 0,
                 Content = null,
             },
-            new VdfsEntry()
+            new VdfsEntry
             {
                 Name = "SCRIPT.D",
                 Offset = 0x308,
@@ -85,7 +85,7 @@ namespace VdfsSharp.Tests
                 Attributes = Vdfs.FileAttribute.Archive,
                 Content = new Byte[0],
             },
-            new VdfsEntry()
+            new VdfsEntry
             {
                 Name = "TEXTURE.TEX",
                 Offset = 0x308,

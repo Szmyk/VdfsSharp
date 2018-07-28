@@ -58,7 +58,32 @@ namespace VdfsSharp
         }
 
         /// <summary>
+        /// Reads entry content from archive.
+        /// </summary>
+        public byte[] ReadEntryContent (VdfsEntry entry)
+        {
+            long positonBackup = _reader.BaseStream.Position;
+
+            _reader.BaseStream.Seek(entry.Offset, SeekOrigin.Begin);
+
+            var toReturn =_reader.ReadBytes((int)entry.Size);
+
+            _reader.BaseStream.Position = positonBackup;
+
+            return toReturn;
+        }
+
+        /// <summary>
+        /// Releases all resources used by the current instance of the <see cref="VdfsReader"/> class.
+        /// </summary>
+        public void Dispose()
+        {
+            _reader.Dispose();
+        }
+
+        /// <summary>
         /// Reads header from archive.
+        /// </summary>
         private VdfsHeader readHeader()
         {
             return new VdfsHeader
@@ -73,22 +98,6 @@ namespace VdfsSharp
                 EntrySize = _reader.ReadInt32()
             };
         }
-
-        /// <summary>
-        /// Reads entry content from archive.
-        /// </summary>
-        public byte[] ReadEntryContent (VdfsEntry entry)
-        {
-            long positonBackup = _reader.BaseStream.Position;
-
-            _reader.BaseStream.Seek(entry.Offset, SeekOrigin.Begin);
-
-            var toReturn =_reader.ReadBytes((int)entry.Size);
-
-            _reader.BaseStream.Position = positonBackup;
-
-            return toReturn;
-        }    
 
         /// <summary>
         /// Converts bytes array to 8-bit ASCII string.
@@ -119,11 +128,6 @@ namespace VdfsSharp
             {
                 return new DateTime();
             }
-        }
-
-        public void Dispose()
-        {
-            _reader.Dispose();
         }
     }
 }
