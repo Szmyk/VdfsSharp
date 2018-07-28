@@ -66,14 +66,15 @@ namespace VdfsSharp.Sample
                 {
                     Console.WriteLine("Extracting archive `{0}` to directory `{1}` (with hierarchy: {2}).", filePath, Options.ExtractPath, Options.WithHierarchy);
 
-                    var extractor = new VdfsExtractor(reader);
+                    using (var extractor = new VdfsExtractor(reader))
+                    {
+                        extractor.ExtractFiles(Options.ExtractPath,
+                         ( Options.WithHierarchy == true )
+                         ? ExtractOption.Hierarchy
+                         : ExtractOption.NoHierarchy);
 
-                    extractor.ExtractFiles(Options.ExtractPath,
-                        (Options.WithHierarchy == true)
-                        ? ExtractOption.Hierarchy 
-                        : ExtractOption.NoHierarchy );
-
-                    Console.WriteLine("Done.");
+                        Console.WriteLine("Done.");
+                    }                   
                 }           
                 else if (Options.PrintTree || Options.SaveTree != string.Empty)
                 {

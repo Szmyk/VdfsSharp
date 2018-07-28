@@ -1,6 +1,7 @@
 ﻿using System.IO;
 using System.Linq;
 using System.Collections.Generic;
+using System;
 
 namespace VdfsSharp
 {
@@ -23,7 +24,7 @@ namespace VdfsSharp
     /// <summary>
     /// Provides extracting files from VDFS archive.
     /// </summary>
-    public class VdfsExtractor
+    public class VdfsExtractor : IDisposable
     {
         VdfsReader _vdfsReader;
 
@@ -43,6 +44,11 @@ namespace VdfsSharp
         public VdfsExtractor(VdfsReader vdfsReader)
         {
             _vdfsReader = vdfsReader;
+        }
+
+        public void Dispose()
+        {
+            _vdfsReader.Dispose();
         }
 
         /// <summary>
