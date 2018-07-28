@@ -8,7 +8,7 @@ namespace VdfsSharp
     /// <summary>
     /// Provides a reader of VDFS archives.
     /// </summary>
-    public class VdfsReader
+    public class VdfsReader : IDisposable
     {
         /// <summary>
         /// Gets or sets the header of archive.
@@ -119,6 +119,11 @@ namespace VdfsSharp
             {
                 return new DateTime();
             }
+        }
+
+        public void Dispose()
+        {
+            _reader.Dispose();
         }
     }
 }
