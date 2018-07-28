@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace VdfsSharp
+﻿namespace VdfsSharp
 {
     /// <summary>
     /// Provides <see cref="VdfsEntriesTree"/> generating.
