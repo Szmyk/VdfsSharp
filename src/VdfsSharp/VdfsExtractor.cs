@@ -26,7 +26,7 @@ namespace VdfsSharp
     /// </summary>
     public class VdfsExtractor : IDisposable
     {
-        VdfsReader _vdfsReader;
+        readonly VdfsReader _vdfsReader;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="VdfsExtractor"/> class.

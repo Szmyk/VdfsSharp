@@ -9,16 +9,16 @@ namespace VdfsSharp
     /// </summary>
     public class VdfsEntriesTree
     {
-        public VdfsEntry Entry;
+        public readonly VdfsEntry Entry;
 
-        public List<VdfsEntriesTree> Childrens = new List<VdfsEntriesTree>();
+        public readonly List<VdfsEntriesTree> Childrens = new List<VdfsEntriesTree>();
 
         /// <summary>
         /// Initializes a new instance of the <see cref="VdfsEntriesTree"/> class.
         /// </summary>
         public VdfsEntriesTree()
         {
-            Entry = new VdfsEntry()
+            Entry = new VdfsEntry
             {
                 Name = "(root)",
                 Type = Vdfs.EntryType.Directory,
@@ -49,7 +49,15 @@ namespace VdfsSharp
         /// <summary>
         /// Gets hierarchical view of tree.
         /// </summary>
-        public string GetTreeView(string indent = "", bool isLast = true, bool isRoot = true)
+        public string GetTreeView()
+        {
+            return GetTreeView("", true, true);
+        }
+
+        /// <summary>
+        /// Gets hierarchical view of tree.
+        /// </summary>
+        public string GetTreeView(string indent, bool isLast, bool isRoot)
         {
             var result = new StringBuilder();
 

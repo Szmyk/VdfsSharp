@@ -7,7 +7,7 @@ namespace VdfsSharp
     /// </summary>
     public class VdfsEntriesTreeGenerator
     {
-        VdfsEntry[] _entries;
+        readonly VdfsEntry[] _entries;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="VdfsEntriesTreeGenerator"/> class.

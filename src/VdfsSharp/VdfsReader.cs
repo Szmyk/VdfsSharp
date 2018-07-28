@@ -13,9 +13,9 @@ namespace VdfsSharp
         /// <summary>
         /// Gets or sets the header of archive.
         /// </summary>
-        public VdfsHeader Header;
+        public readonly VdfsHeader Header;
 
-        BinaryReader _reader;
+        readonly BinaryReader _reader;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="VdfsReader"/> class.

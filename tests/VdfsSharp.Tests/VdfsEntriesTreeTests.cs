@@ -108,7 +108,7 @@ namespace VdfsSharp.Tests
 
             var entries = new VdfsEntryListBuilder()
                 /*0*/.Add("HEIßE.TXT")
-                /*0*/.AddLast("Ó.TXT").Entries.ToArray();
+                /*1*/.AddLast("Ó.TXT").Entries.ToArray();
 
             Assert.AreEqual(generateVdfsEntriesTreeView(entries), generateVdfsEntriesTreeView("Samples/test4.vdf"));
         }
@@ -120,7 +120,7 @@ namespace VdfsSharp.Tests
 
         public VdfsEntryListBuilder Add(string entryName)
         {
-            Entries.Add(new VdfsEntry()
+            Entries.Add(new VdfsEntry
             {
                 Name = entryName,
             });
@@ -130,7 +130,7 @@ namespace VdfsSharp.Tests
 
         public VdfsEntryListBuilder AddLast(string entryName)
         {
-            Entries.Add(new VdfsEntry()
+            Entries.Add(new VdfsEntry
             {
                 Name = entryName,
                 Type = Vdfs.EntryType.Last,
@@ -141,7 +141,7 @@ namespace VdfsSharp.Tests
 
         public VdfsEntryListBuilder AddDirectory(string entryName, uint offset)
         {
-            Entries.Add(new VdfsEntry()
+            Entries.Add(new VdfsEntry
             {
                 Name = entryName,
                 Offset = offset,
@@ -153,7 +153,7 @@ namespace VdfsSharp.Tests
 
         public VdfsEntryListBuilder AddLastDirectory(string entryName, uint offset)
         {
-            Entries.Add(new VdfsEntry()
+            Entries.Add(new VdfsEntry
             {
                 Name = entryName,
                 Offset = offset,
