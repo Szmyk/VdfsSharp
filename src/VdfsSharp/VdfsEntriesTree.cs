@@ -65,7 +65,7 @@ namespace VdfsSharp
             {
                 result.Append(indent);
                 result.Append("+- ");
-                result.Append(Entry);
+                result.Append(Entry.Name);
                 result.Append(Environment.NewLine);
 
                 indent += isLast ? "   " : "|  ";
