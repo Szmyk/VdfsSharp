@@ -1,12 +1,12 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 using System.Linq;
+using System.Text;
 using System.Collections.Generic;
 
 namespace VdfsSharp.Tests
 {
     [TestClass]
-    [DeploymentItem("Samples/test.vdf")]
     public class VdfsEntriesTreeGeneratorTests
     {
         string generateVdfsEntriesTreeView(VdfsEntry[] entries)
@@ -30,15 +30,6 @@ namespace VdfsSharp.Tests
         [TestMethod]
         public void Generate_Test1()
         {
-            /*
-            +- _WORK
-               +- DATA
-                  +- SCRIPTS
-                  |  +- SCRIPT.D (0 bytes)
-                  +- TEXTURES
-                     +- TEXTURE.TEX (0 bytes)
-            */
-
             var entries = new VdfsEntryListBuilder()
                 /*0*/.AddLastDirectory("_WORK", 1)
                 /*1*/.AddLastDirectory("DATA", 2)
@@ -47,25 +38,21 @@ namespace VdfsSharp.Tests
                 /*4*/.AddLast("SCRIPT.D")
                 /*5*/.AddLast("TEXTURE.TEX").Entries.ToArray();
 
-            Assert.AreEqual(generateVdfsEntriesTreeView(entries), generateVdfsEntriesTreeView("Samples/test.vdf"));
+            var expected = new StringBuilder();
+            expected.AppendLine("+- _WORK");
+            expected.AppendLine("   +- DATA");
+            expected.AppendLine("      +- SCRIPTS");
+            expected.AppendLine("      |  +- SCRIPT.D");
+            expected.AppendLine("      +- TEXTURES");
+            expected.AppendLine("         +- TEXTURE.TEX");
+
+            Assert.AreEqual(generateVdfsEntriesTreeView(entries), expected.ToString());
+            Assert.AreEqual(generateVdfsEntriesTreeView("Samples/test.vdf"), expected.ToString());
         }
 
         [TestMethod]
         public void Generate_Test2()
         {
-            /*
-            +- 1
-            |  +- _WORK1_1
-            |  |  +- TEST1_1.TXT (0 bytes)
-            |  +- _WORK1_2
-            |     +- TEST1_2.TXT (0 bytes)
-            +- 2
-               +- _WORK2_1
-               |  +- TEST2_1.TXT (0 bytes)
-               +- _WORK2_2
-                  +- TEST2_2.TXT (0 bytes)
-            */
-
             var entries = new VdfsEntryListBuilder()
                 /*0*/.AddDirectory("1", 2)
                 /*1*/.AddLastDirectory("2", 6)
@@ -78,39 +65,52 @@ namespace VdfsSharp.Tests
                 /*8*/.AddLast("TEST2_1.TXT")
                 /*9*/.AddLast("TEST2_2.TXT").Entries.ToArray();
 
-            Assert.AreEqual(generateVdfsEntriesTreeView(entries), generateVdfsEntriesTreeView("Samples/test2.vdf"));
+            var expected = new StringBuilder();
+            expected.AppendLine("+- 1");
+            expected.AppendLine("|  +- _WORK1_1");
+            expected.AppendLine("|  |  +- TEST1_1.TXT");
+            expected.AppendLine("|  +- _WORK1_2");
+            expected.AppendLine("|     +- TEST1_2.TXT");
+            expected.AppendLine("+- 2");
+            expected.AppendLine("   +- _WORK2_1");
+            expected.AppendLine("   |  +- TEST2_1.TXT");
+            expected.AppendLine("   +- _WORK2_2");
+            expected.AppendLine("      +- TEST2_2.TXT");
+
+            Assert.AreEqual(generateVdfsEntriesTreeView(entries), expected.ToString());
+            Assert.AreEqual(generateVdfsEntriesTreeView("Samples/test2.vdf"), expected.ToString());
         }
 
         [TestMethod]
         public void Generate_Test3()
         {
-            /*
-            +- DIR
-            |  +- FILE2.TXT (0 bytes)
-            +- FILE1.TXT (0 bytes)
-            */
-
             var entries = new VdfsEntryListBuilder()
                 /*0*/.AddDirectory("DIR", 2)
                 /*1*/.AddLast("FILE1.TXT")
                 /*2*/.AddLast("FILE2.TXT").Entries.ToArray();
 
-            Assert.AreEqual(generateVdfsEntriesTreeView(entries), generateVdfsEntriesTreeView("Samples/test3.vdf"));
+            var expected = new StringBuilder();
+            expected.AppendLine("+- DIR");
+            expected.AppendLine("|  +- FILE2.TXT");
+            expected.AppendLine("+- FILE1.TXT");
+
+            Assert.AreEqual(generateVdfsEntriesTreeView(entries), expected.ToString());
+            Assert.AreEqual(generateVdfsEntriesTreeView("Samples/test3.vdf"), expected.ToString());
         }
 
         [TestMethod]
         public void Generate_Test4()
         {
-            /*
-            +- HEIßE.TXT (0 bytes)          
-            +- Ó.TXT (0 bytes)     
-            */
-
             var entries = new VdfsEntryListBuilder()
                 /*0*/.Add("HEIßE.TXT")
                 /*1*/.AddLast("Ó.TXT").Entries.ToArray();
 
-            Assert.AreEqual(generateVdfsEntriesTreeView(entries), generateVdfsEntriesTreeView("Samples/test4.vdf"));
+            var expected = new StringBuilder();
+            expected.AppendLine("+- HEIßE.TXT");
+            expected.AppendLine("+- Ó.TXT");
+
+            Assert.AreEqual(generateVdfsEntriesTreeView(entries), expected.ToString());
+            Assert.AreEqual(generateVdfsEntriesTreeView("Samples/test4.vdf"), expected.ToString());
         }
     }
 
