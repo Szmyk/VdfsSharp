@@ -7,7 +7,7 @@ namespace VdfsSharp.Tests
 {
     [TestClass]
     [DeploymentItem("Samples/test.vdf")]
-    public class VdfSReaderTests
+    public class VdfsReaderTests
     { 
         VdfsReader vdfsReader;
 
