@@ -43,7 +43,6 @@ extractor.ExtractFiles("_Work\Anims", ExtractOption.Hierarchy);
 
 ```c#
 using VdfsSharp;
-using System.IO;
 
 //...
 
