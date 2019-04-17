@@ -77,11 +77,11 @@ namespace VdfsSharp
                 }
 
                 return Name.Equals(other.Name)
-                         && Offset.Equals(other.Offset)
-                         && Size.Equals(other.Size)
-                         && Type.Equals(other.Type)
-                         && Attributes.Equals(other.Attributes)
-                         && isContentEquals;
+                    && Offset.Equals(other.Offset)
+                    && Type.Equals(other.Type)
+                    && Size.Equals(other.Size)                    
+                    && Attributes.Equals(other.Attributes)
+                    && isContentEquals;
             }
         }
 
@@ -90,20 +90,18 @@ namespace VdfsSharp
         /// </summary>
         public override int GetHashCode()
         {
-            return Name.GetHashCode()
-                 ^ Offset.GetHashCode()
-                 ^ Size.GetHashCode()
-                 ^ Type.GetHashCode()
-                 ^ Attributes.GetHashCode()
-                 ^ Content.GetHashCode();
-        }
+            unchecked
+            {
+                var result = 0;
 
-        /// <summary>
-        /// Returns the string representation of the current instance.
-        /// </summary>
-        public override string ToString()
-        {
-            return Name + (Type.HasFlag(Vdfs.EntryType.Directory) == false ? string.Format(" ({0} bytes)", Size) : string.Empty);
-        }      
+                result = (result * 397) ^ Type.GetHashCode();
+                result = (result * 397) ^ Attributes.GetHashCode();
+                result = (result * 397) ^ Offset.GetHashCode();
+                result = (result * 397) ^ Content.GetHashCode();
+                result = (result * 397) ^ Name.GetHashCode();
+
+                return result;
+            }
+        }     
     }
 }
