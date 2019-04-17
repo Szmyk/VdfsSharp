@@ -97,11 +97,13 @@ namespace VdfsSharp
 
             for (int i = 0; i < files.Length; i++)
             {
+                var content = File.ReadAllBytes(files[i]);
+
                 var entry = new VdfsEntry()
                 {
                     Name = Path.GetFileName(files[i]).ToUpper(),
-                    Content = File.ReadAllBytes(files[i]),
-                    Size = 0
+                    Content = content,
+                    Size = (uint)content.Length
                 };
 
                 var fileAttributes = File.GetAttributes(files[i]);
@@ -192,8 +194,6 @@ namespace VdfsSharp
                 _writer.Write(BitConverter.GetBytes((int)entry.Type), 0, 4);
                 _writer.Write(BitConverter.GetBytes((int)entry.Attributes), 0, 4);
             }
-
-            _writer.BaseStream.Position = position;
 
             foreach (var entry in Entries.Where(x => x.Content != null))
             {
