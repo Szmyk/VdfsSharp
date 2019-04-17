@@ -1,6 +1,6 @@
 # VdfsSharp
 
-> Loading and extracting VDFS archives used by the games "Gothic" and "Gothic II"
+> Building, loading and extracting VDFS archives used by the games "Gothic" and "Gothic II"
 
 The main aim of the project is to provide a way for the [Gothic Mod Build Tool](https://github.com/Szmyk/gmbt) project to extract and build VDFS archives programmatically instead of using external tools.
 
@@ -38,3 +38,19 @@ var extractor = new VdfsExtractor("Anims.vdf");
 extractor.ExtractFiles("_Work\Anims", ExtractOption.Hierarchy);
 
 ````
+
+### Building
+
+```c#
+using VdfsSharp;
+using System.IO;
+
+//...
+
+var writer = new VdfsWriter("Scripts.vdf", "Scripts of my mod", GothicVersion.Gothic2);
+
+writer.AddDirectory("_Work\Scripts");
+
+writer.Save();
+
+```
